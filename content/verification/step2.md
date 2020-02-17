@@ -1,5 +1,5 @@
 +++
-title = "SQL Injection 공격 차단"
+title = "권한 경계(Permission Boudnardy)의 사용"
 weight = 2
 pre = "<b>3.2 </b>"
 +++

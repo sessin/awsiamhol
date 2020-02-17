@@ -55,7 +55,7 @@ IAM 사용자 생성 – 관리자 계정(Admin) IAM 사용자는 IAM 서비스�
     </item>
     
     <item>
-      <title>SQL Injection 공격 차단</title>
+      <title>권한 경계(Permission Boudnardy)의 사용</title>
       <link>/verification/step2.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
