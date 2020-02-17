@@ -3,7 +3,7 @@ CanonifyURLs=true
 languageCode = "ko-KR"
 defaultContentLanguage = "kr"
 
-title = "AWS Korea WAF Workshop"
+title = "AWS Korea IAM Workshop"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
@@ -14,8 +14,7 @@ pygmentsCodeFences = true
 pygmentsStyle = "monokai"
 
 [params]
-  editURL = "https://code.amazon.com/packages/Aws-workshop-template/blobs/master/--/workshop/content/"
-  description = "AWS Korea WAF Workshop"
+  description = "AWS Korea IAM Workshop"
   author = "Eunsu Shin"
   disableBreadcrumb = false
   disableNextPrev = false
@@ -35,12 +34,12 @@ hrefTargetBlank = true
 
 [Languages]
 [Languages.kr]
-title = "AWS WAF Workshop"
+title = "AWS IAM Workshop"
 weight = 1
 languageName = "Korean"
 
 [[Languages.kr.menu.shortcuts]] 
 name = "<i class='fab fa-github'></i> Github repo"
 identifier = "ds"
-url = "https://github.com/sessin/awswafhol"
+url = "https://github.com/sessin/awsiamhol"
 weight = 10

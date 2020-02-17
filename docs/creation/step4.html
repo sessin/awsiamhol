@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html lang="kr" class="js csstransforms3d">
+<head>
+  <meta charset="utf-8">
+  <meta property="og:title" content="AWS IAM Workshop" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="generator" content="Hugo 0.58.3" />
+  <meta name="description" content="AWS Korea IAM Workshop">
+<meta name="author" content="Eunsu Shin">
+
+  <link rel="shortcut icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+<link rel="icon" href="https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico" type="image/ico" />
+
+  <title>IAM 정책 생성 :: AWS IAM Workshop</title>
+
+  
+  <link href="../css/nucleus.css" rel="stylesheet">
+  <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+  <link href="../css/hybrid.css" rel="stylesheet">
+  <link href="../css/featherlight.min.css" rel="stylesheet">
+  <link href="../css/perfect-scrollbar.min.css" rel="stylesheet">
+  <link href="../css/auto-complete.css" rel="stylesheet">
+  <link href="../css/atom-one-dark-reasonable.css" rel="stylesheet">
+  <link href="../css/theme.css" rel="stylesheet">
+  <link href="../css/hugo-theme.css" rel="stylesheet">
+  
+  <link href="../css/theme-awskr.css" rel="stylesheet">
+  
+
+  <script src="../js/jquery-3.3.1.min.js"></script>
+
+  <style>
+    :root #header + #content > #left > #rlblock_left{
+        display:none !important;
+    }
+    
+      :not(pre) > code + span.copy-to-clipboard {
+          display: none;
+      }
+    
+  </style>
+  
+</head>
+
+<body class="" data-url="/creation/step4.html">
+  <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <div>
+    <a href="../" title="Go home">
+        <img style="vertical-align:middle" src="../images/logo.png" height="70px" />
+    </a>
+</div>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../js/lunr.min.js"></script>
+<script type="text/javascript" src="../js/auto-complete.js"></script>
+<script type="text/javascript">
+    
+        var baseurl = "";
+    
+</script>
+<script type="text/javascript" src="../js/search.js"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/overview.html" title="전체 실습 구성" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../overview.html">
+          전체 실습 구성
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/pre.html" title="실습 개요" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../pre.html">
+          <b>1. </b>실습 개요
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/pre/step1.html" title="실습 안내" class="dd-item ">
+        <a href="../pre/step1.html">
+        <b>1.1 </b>실습 안내
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/creation.html" title="IAM 정책 설정" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="../creation.html">
+          <b>2. </b>IAM 정책 설정
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/creation/step1.html" title="IAM 사용자(User) 설정" class="dd-item ">
+        <a href="../creation/step1.html">
+        <b>1.1 </b>IAM 사용자(User) 설정
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/creation/step2.html" title="IAM 관리자 생성" class="dd-item ">
+        <a href="../creation/step2.html">
+        <b>1.2 </b>IAM 관리자 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/creation/step3.html" title="IAM EC2 관리자 생성" class="dd-item ">
+        <a href="../creation/step3.html">
+        <b>1.3 </b>IAM EC2 관리자 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/creation/step4.html" title="IAM 정책 생성" class="dd-item active">
+        <a href="../creation/step4.html">
+        <b>1.4 </b>IAM 정책 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/creation/step5.html" title="IAM 역할(Role) 생성" class="dd-item ">
+        <a href="../creation/step5.html">
+        <b>1.5 </b>IAM 역할(Role) 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/verification.html" title="권한 확인" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../verification.html">
+          <b>3. </b>권한 확인
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/verification/step1.html" title="IAM 사용자 권한의 확인" class="dd-item ">
+        <a href="../verification/step1.html">
+        <b>3.1 </b>IAM 사용자 권한의 확인
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/verification/step2.html" title="SQL Injection 공격 차단" class="dd-item ">
+        <a href="../verification/step2.html">
+        <b>3.2 </b>SQL Injection 공격 차단
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/advanced.html" title="심화학습" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../advanced.html">
+          <b>4. </b>심화학습
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/post.html" title="실습 구성 요소 삭제" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../post.html">
+          <b>5. </b>실습 구성 요소 삭제
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3></h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/sessin/awsiamhol"><i class='fab fa-github'></i> Github repo</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <left>
+
+    <h5 class="copyright">&copy; 2019 Amazon Web Services, Inc. or its Affiliates. All rights reserved.<h5>
+
+</left>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+  <section id="body">
+    <div id="overlay"></div>
+    <div class="padding highlightable">
+      
+      <div>
+        <div id="top-bar">
+          
+          
+          <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                <i class="fa fa-bars"></i>
+              </a>
+            </span>
+            
+            <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+            
+            <span class="links">
+              
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href='../'>AWS IAM 정책 생성 및 적용 실습</a> > <a href='../creation.html'>IAM 정책 설정</a> > IAM 정책 생성
+          
+          
+          
+          
+          
+          
+            </span>
+          </div>
+          
+          <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#iam-정책-생성-고객-관리형">IAM 정책 생성 – 고객 관리형</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+          
+        </div>
+      </div>
+      
+
+      
+        <div id="body-inner">
+          <h1>IAM 정책 생성</h1>
+          
+          
+
+
+
+
+<hr />
+
+<h3 id="iam-정책-생성-고객-관리형">IAM 정책 생성 – 고객 관리형</h3>
+
+<p>이 과정에서 생성하게 될 “ec2admin” IAM 사용자는 AWS 에서 제공하는 “AWS 관리형 정책”을 할당받게 되며 할당받는 AmazonEC2FullAccess 권한에 따라 EC2 인스턴스의 사용에 필요한 권한을 갖게 됩니다.</p>
+
+<p>IAM 정책은 사용 유형에 따라 관리형 정책과 인라인 정책으로 나누어집니다. 관리형 정책은 별도로 만들어진 정책을 여러 사용자나 그룹 혹은 역할에 할당하여 재사용할 수 있도록하는 정책을 의미하며 AWS 관리형 정책과 고객 관리형 정책, 이렇게 2가지가 존재합니다. AWS 관리형 정책은 AWS 에서 계정 생성 후 즉시 사용할 수 있도록 주요 사용자 유형에 따라 권한을 정리한 정책을 의미하며 AWS 에서 관리하는 정책이므로 삭제 및 수정이 불가능합니다. 고객 관리형 정책은 고객이 직접 생성하는 관리형 정책으로서 고객의 필요에 따라 생성, 수정, 삭제가 가능합니다. 인라인 정책은 관리형 정책과 다르게 특정 사용자나 역할에 한정되어 적용되는 즉, 재사용이 불가능한 정책을 말합니다. 이 Lab 에서는 고객 관리형 정책을 생성하도록 하겠습니다.</p>
+
+<ol>
+<li>“서비스”메뉴에서 “IAM”을 선택하거나 검색하여 IAM Management Console로 이동하십시오.</li>
+<li>“IAM 대시 보드”에서 “정책”을 선택한 후, “정책 생성”을 선택합니다.
+<img src="../images/iam_addpolicy.png" alt="IAM Policy Creation" /></li>
+
+<li><p>정책 생성 화면에서 “JSON” 탭을 선택한 후 아래의 IAM 정책을 입력합니다. 그리고 정책 검토 버튼을 클릭합니다.</p>
+
+<pre><code>{
+&quot;Version&quot;: &quot;2012-10-17&quot;,
+&quot;Statement&quot;: [
+    {
+        &quot;Sid&quot;: &quot;DenyAllOutsideSpecifedRegion&quot;,
+        &quot;Effect&quot;: &quot;Deny&quot;,
+        &quot;Action&quot;: &quot;*&quot;,
+        &quot;Resource&quot;: &quot;*&quot;,
+        &quot;Condition&quot;: {
+            &quot;StringNotEquals&quot;: {
+                &quot;aws:RequestedRegion&quot;: [
+                    &quot;ap-northeast-2&quot;
+                ]
+            }
+        }
+    },
+    {
+        &quot;Effect&quot;: &quot;Allow&quot;,
+        &quot;Action&quot;: &quot;*&quot;,
+        &quot;Resource&quot;: &quot;*&quot;
+    }
+]
+}
+</code></pre>
+
+<p><img src="../images/iam_policyreview.png" alt="IAM Policy Creation" /></p></li>
+
+<li><p>정책 검토 화면에서 “이름” 에 식별 가능한 이름을 입력한 후 “정책 생성” 버튼을 클릭합니다.
+<img src="../images/iam_createpolicy.png" alt="IAM Policy Creation" /></p></li>
+
+<li><p>아래와 같이 “정책 필터” 에 “deny-all” 을 입력하여 생성한 정책이 정상적으로 생성되었음을 확인합니다.
+<img src="../images/iam_listpolicy.png" alt="IAM Policy Creation" /></p></li>
+</ol>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="../creation/step3.html" title="IAM EC2 관리자 생성"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="../creation/step5.html" title="IAM 역할(Role) 생성" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../js/clipboard.min.js"></script>
+    <script src="../js/perfect-scrollbar.min.js"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/jquery.sticky.js"></script>
+    <script src="../js/featherlight.min.js"></script>
+    <script src="../js/html5shiv-printshiv.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/modernizr.custom-3.6.0.js"></script>
+    <script src="../js/learn.js"></script>
+    <script src="../js/hugo-learn.js"></script>
+
+    <link href="../mermaid/mermaid.css" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+  </body>
+</html>
+
