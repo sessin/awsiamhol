@@ -11,11 +11,11 @@
   </url>
   
   <url>
-    <loc>/creation/step1.html</loc>
+    <loc>/pre/step1.html</loc>
   </url>
   
   <url>
-    <loc>/pre/step1.html</loc>
+    <loc>/creation/step1.html</loc>
   </url>
   
   <url>
@@ -33,6 +33,10 @@
   
   <url>
     <loc>/verification/step2.html</loc>
+  </url>
+  
+  <url>
+    <loc>/verification/step3.html</loc>
   </url>
   
   <url>
@@ -64,6 +68,10 @@
   
   <url>
     <loc>/post.html</loc>
+  </url>
+  
+  <url>
+    <loc>/creation/step6.html</loc>
   </url>
   
   <url>

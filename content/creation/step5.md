@@ -1,25 +1,25 @@
 +++
-title = "IAM 역할(Role) 생성"
+title = "Assume 사용자 생성"
 weight = 5
 pre = "<b>1.5 </b>"
 +++
 
 * * *
-### IAM 역할 생성  
-IAM 역할은 IAM 서비스에서 제공하는 구성요소 중 하나로서 AWS 서비스에서 권한을 수행하는 여러가지 주체(Principle) 중 하나입니다. 역할은 사용자와 비슷한게 할당받은 정책(관리형 정책 혹은 인라인 정책)을 통하여 여러 AWS 서비스에 대한 권한을 갖게됩니다. IAM 정책의 주체(Priciple)로서 권한을 행사한다는 점에서 역할은 사용자와 아주 비슷하지만 사용자와는 다르게 “임시 보안 자격 증명” 을 사용한다는 점에서 보안적으로 아주 큰 장점을 가지고 있습니다. 기본적으로 역할은 지정된 자격증명(아이디나 암호, 액세스 키 등)이 없습니다. 대신, 사용자가 역할을 사용하게 될 때 임시로 발급되는 자격증명을 사용하기 때문에 보다 안전한 AWS 운영 환경을 구성할 수 있습니다.
+### IAM 사용자 생성 – Assume 사용자
+이 과정에서 생성하게 될 “assume_user” IAM 사용자는 IAM 관리자가 별도로 생성한 "Assume-Policy" 라는 고객 관리형 정책을 할당받게 됩니다.
 
+1.  “서비스”메뉴에서 “IAM”을 선택하거나 검색하여 IAM Management Console로 이동하십시오.
+2. “IAM 대시 보드”에서 “사용자”를 선택한 후, “사용자 추가”를 선택합니다.
+![IAM User Creation](/images/iam_adduser2.png)
+3.  “사용자 이름”에 생성하고자 하는 IAM 사용자의 이름을 “assumeuser”으로 지정합니다.사용자 이름은 Management Console 에 로그인하는 경우 아이디로도 사용되므로 식별 가능한 이름으로 생성하기를 권고드립니다. “액세스 유형” 에서 “프로그래밍 방식 액세스” 와 “AWS Management Console 액세스” 의 체크박스를 클릭하여 해당 항목들이 선택되도록 합니다. “액세스 유형”은 생성되는 IAM 사용자가 사용 가능한 액세스 유형을 정의하는 것으로 GUI 기반인 AWS Management Console 과 프로그래밍 방식인 API, CLI, SDK 등 기타 액세스 키 ID 및 비밀 액세스 키의 활성화를 결정하게 됩니다. 다음으로 “콘솔 비밀번호”항목에서 “사용자 지정 비밀 번호” 에 해당하는 라디오 버튼을 선택한 후 사용하고자 하는 비밀번호를 입력합니다. 기본값으로 AWS 에 사용하는 비밀번호는 반드시 열개의 문자이상이고 영어 대문자와 특수문자를 반드시 포함하여야 합니다. 마지막으로 “비밀번호 재생성 필요”항목의 체크박스를 클릭하여 해제합니다. 이 항목이 체크되어 있는 경우 생성된 IAM 사용자는 최초 로그인 이후 반드시 비밀번호를 변경하여야 합니다. 이 Lab 에서는 편의상 최초 생성된 비밀번호를 변경하지 않고 사용하도록 하겠습니다. 모든 설정이 적용 되었으면 “다음: 권한” 버턴을 클릭합니다.  
+![IAM User Creation](/images/iam_addassumeuser1.png)
+4. 다음 화면의 메뉴 중 “권한 설정”에서 “기존 정책 직접 연결” 을 선택합니다. 그리고 “정책 필터”의 검색 창에 “all-allow” 을 입력한 후 이전 과정에서 생성하였던 “all-allow-assumerole” 정책을 체크한 후 화면 하단의 “다음: 태그”를 클릭합니다.
+![IAM User Creation](/images/iam_addassumeuser2.png)          
+5. 실제 업무 환경에서는 업무 유형과 환경에 따라 태그를 보다 정교하게 설정하여 활용하는 것이 보안과 관리상 편리하지만 이 Lab 에서는 아래와 같이 “group:user”, “user:assume_user”,”project:lab” 과 같이 3개의 태그를 입력하도록 하겠습니다. 태그를 입력한 후 화면 하단의 “다음: 검토”를 클릭합니다.
+![IAM User Creation](/images/iam_addassumeuser3.png) 
+6. 다음 화면에서 이전 과정에서 설정한 IAM 사용자의 설정사항들이 모두 맞는지 확인한 후 화면 하단의 “사용자 만들기”를 클릭합니다.
+![IAM User Creation](/images/iam_addassumeuser4.png)           
+7. “사용자 만들기”를 클릭하고 나면 아래와 같이 IAM 사용자가 생성된 것을 확인할 수 있습니다. 이 화면에서는 IAM 사용자가 사용할 수 있는 “액세스 키 ID 와 비밀 액세스 키” 정보를 제공합니다. “액세스 키 ID 와 비밀 액세스 키”를 다운로드하기 위해 화면 중간의 “.csv 다운로드” 버튼을 클릭한 후 “액세스 키 ID 와 비밀 액세스 키” 를 저장합니다. “액세스 키 ID 와 비밀 액세스 키”가 저장되었다면 “닫기”를 클릭합니다.
+![IAM User Creation](/images/iam_addassumeuser5.png)
 
-1.	“서비스”메뉴에서 “IAM”을 선택하거나 검색하여 IAM Management Console로 이동하십시오.
-2.	“IAM 대시 보드”에서 “역할”를 선택한 후, “역할 만들기”를 선택합니다.
-![IAM Role Creation](/images/iam_addrole.png)        
-3. “역할 만들기” 화면에서 “신뢰할 수 있는 유형의 개체 선택” 메뉴 중 “다른 AWS 계정” 을 선택합니다. “다른 AWS 계정”을 선택한 후 나타나는 아래와 같은 화면의 계정 ID 부분에 자신의 계정 ID 를 입력합니다. 입력 후 “다음: 권한” 버튼을 클릭합니다.
-(*자신의 계정 ID 는 IAM 대시보드에서 확인할 수 있습니다.)
-![IAM Role Creation](/images/iam_typerole.png)    
-4. “역할 만들기” 2단계화면에서는 아래와 같이 “정책 필터” 에 “ec2full” 을 입력한 후 나타나는 “AmazonEC2FullAccess” 라는 이름의 AWS 관리형 정책을 선택합니다. 선택한 후 “다음: 태그” 버튼을 클릭합니다.
-![IAM Role Creation](/images/iam_attachrole.png)    
-5. 실제 업무 환경에서는 업무 유형과 환경에 따라 태그를 보다 정교하게 설정하여 활용하는 것이 보안과 관리상 편리하지만 이 Lab 에서는 아래와 같이 “group:ec2admin”,”project:lab” 과 같이 2개의 태그를 입력하도록 하겠습니다. 태그를 입력한 후 화면 하단의 “다음: 검토”를 클릭합니다.
-![IAM Role Creation](/images/iam_tagrole.png)    
-6. “역할 이름”에 “ec2admin_role” 을 입력한 후 “역할 만들기 버튼을 클릭합니다.
-![IAM Role Creation](/images/iam_namerole.png)    
-7. 방금 생성한 역할을 확인하기 위하여 IAM 대시보드에서 역할을 선택한 후 검색창에 “ec2admin” 을 입력하여 조금 전 생성한 역할이 정상적으로 나타나는지 확인합니다.
-![IAM Role Creation](/images/iam_viewrole.png)    
+ 
